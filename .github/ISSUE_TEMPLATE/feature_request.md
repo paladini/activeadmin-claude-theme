@@ -6,7 +6,7 @@ labels: enhancement
 assignees: ''
 ---
 
-**Is your feature related to Active Admin 4 / Tailwind v4?**
+**Is your feature related to Active Admin 3 (Sass) or Active Admin 4 (Tailwind v4)?**
 
 **Describe the problem**
 
