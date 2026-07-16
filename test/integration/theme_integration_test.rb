@@ -11,6 +11,10 @@ class ThemeIntegrationTest < ActionDispatch::IntegrationTest
   def setup
     Capybara.app = Rails.application
     Capybara.current_driver = :rack_test
+    AdminUser.find_or_create_by!(email: "admin@example.com") do |user|
+      user.password = "password"
+      user.password_confirmation = "password"
+    end
   end
 
   def teardown
@@ -20,6 +24,17 @@ class ThemeIntegrationTest < ActionDispatch::IntegrationTest
   def test_login_page_renders
     visit "/admin/login"
     assert page.has_css?("body")
+  end
+
+  def test_admin_users_index_renders
+    visit "/admin/login"
+    fill_in "admin_user_email", with: "admin@example.com"
+    fill_in "admin_user_password", with: "password"
+    find("input[type=submit]").click
+
+    visit "/admin/admin_users"
+    assert page.has_css?("table")
+    refute_match(/RuntimeError|AssetNotPrecompiled/i, page.text)
   end
 
   def test_built_css_includes_claude_marker

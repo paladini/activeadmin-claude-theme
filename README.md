@@ -77,22 +77,41 @@ bundle install
 rails generate activeadmin_claude_theme:install
 ```
 
-### 3. Load fonts + rebuild CSS
+### 3. Rebuild CSS
 
-Add Google Fonts to your host `app/assets/stylesheets/active_admin.css` **before** `@import "tailwindcss";`:
-
-```css
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap");
-@import "tailwindcss";
-@import "../tailwind/activeadmin_claude_theme.css";
-```
-
-Then rebuild:
+The install generator moves the Tailwind **source** to `app/assets/tailwind/active_admin.css` so Propshaft only serves the compiled file from `app/assets/builds/active_admin.css`.
 
 ```bash
 npm run build:css
 # or: bin/rails css:build
 ```
+
+Restart the Rails server after rebuilding.
+
+---
+
+## Troubleshooting
+
+### `active_admin.css` not present in the asset pipeline
+
+Active Admin 4 builds CSS with Tailwind CLI. The **source** file must live outside Propshaft's served paths:
+
+```
+app/assets/tailwind/active_admin.css   # Tailwind source (NOT served)
+app/assets/builds/active_admin.css     # compiled output (served as "active_admin")
+```
+
+Run `rails generate activeadmin_claude_theme:install` — it moves the source to `app/assets/tailwind/` and updates your `package.json` build script. Then:
+
+```bash
+npm run build:css
+```
+
+Restart the Rails server.
+
+### Do not use legacy SCSS imports
+
+AA4 does not use `@import "active_admin/base"`. Remove old Sprockets manifest entries such as `active_admin/base.css` or `activeadmin_claude_theme/index.css`.
 
 ---
 

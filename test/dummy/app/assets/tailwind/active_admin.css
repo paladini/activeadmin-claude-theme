@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap");
 @import "tailwindcss";
-@import "../tailwind/activeadmin_claude_theme.css";
+@import "./activeadmin_claude_theme.css";
 
 @config "../../../tailwind-active_admin.config.js";

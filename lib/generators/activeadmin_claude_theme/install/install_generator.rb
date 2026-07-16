@@ -10,33 +10,55 @@ module ActiveadminClaudeTheme
       AA_TW_SRC = "app/assets/tailwind/active_admin.css"
       AA_TW_SRC_LEGACY = "app/assets/stylesheets/active_admin.css"
       TW_CONF = "tailwind-active_admin.config.js"
+      PACKAGE_JSON = "package.json"
+      FONTS_IMPORT = <<~CSS
+        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap");
+      CSS
 
       def vendor_theme_css
         css = ActiveadminClaudeTheme::Engine.root.join("app/assets/stylesheets/activeadmin_claude_theme.css").read
         create_file "app/assets/tailwind/activeadmin_claude_theme.css", css
       end
 
+      def relocate_active_admin_source
+        return if File.exist?(AA_TW_SRC)
+
+        if File.exist?(AA_TW_SRC_LEGACY)
+          create_file AA_TW_SRC, File.read(AA_TW_SRC_LEGACY)
+          remove_file AA_TW_SRC_LEGACY
+          say "Moved Active Admin Tailwind source to #{AA_TW_SRC} (keeps Propshaft from serving uncompiled CSS).", :green
+        else
+          say "Skipped relocate: run `rails g active_admin:assets` first.", :yellow
+        end
+      end
+
       def import_into_build
-        target = if File.exist?(AA_TW_SRC)
-          AA_TW_SRC
-        elsif File.exist?(AA_TW_SRC_LEGACY)
-          AA_TW_SRC_LEGACY
-        end
+        return unless File.exist?(AA_TW_SRC)
 
-        unless target
-          say "Skipped @import: Active Admin tailwind entry not found — run `rails g active_admin:assets` first.", :yellow
-          return
-        end
+        import_line = %(@import "./activeadmin_claude_theme.css";\n)
+        return if File.read(AA_TW_SRC).include?("activeadmin_claude_theme.css")
 
-        import_line = %(@import "../tailwind/activeadmin_claude_theme.css";\n)
-        return if File.read(target).include?("activeadmin_claude_theme.css")
+        inject_into_file AA_TW_SRC, import_line, after: /@import "tailwindcss";\n/
 
-        inject_into_file target, import_line, after: /@import "tailwindcss";\n/
+        return if File.read(AA_TW_SRC).include?("fonts.googleapis.com")
+
+        inject_into_file AA_TW_SRC, FONTS_IMPORT, before: /@import "tailwindcss";\n/
+      end
+
+      def configure_build_script
+        return unless File.exist?(PACKAGE_JSON)
+
+        package = File.read(PACKAGE_JSON)
+        return if package.include?("app/assets/tailwind/active_admin.css")
+
+        gsub_file PACKAGE_JSON,
+                  "./app/assets/stylesheets/active_admin.css",
+                  "./app/assets/tailwind/active_admin.css"
       end
 
       def add_view_content_source
         return unless File.exist?(TW_CONF)
-        return if File.read(TW_CONF).include?("activeadmin_claude_theme")
+        return if File.read(TW_CONF).include?("activeadmin-claude-theme")
 
         snippet = <<~JS
               `${execSync('bundle show activeadmin-claude-theme', { encoding: 'utf-8' }).trim().split(/\\r?\\n/).pop()}/app/views/**/*.{erb,html,arb,rb}`,
@@ -45,11 +67,23 @@ module ActiveadminClaudeTheme
         inject_into_file TW_CONF, snippet, after: "content: [\n"
       end
 
+      def patch_tailwind_config_bundle_gemfile
+        return unless File.exist?(TW_CONF)
+        return if File.read(TW_CONF).include?("BUNDLE_GEMFILE")
+
+        inject_into_file TW_CONF,
+                         "process.env.BUNDLE_GEMFILE ||= require('path').resolve(__dirname, 'Gemfile');\n\n",
+                         before: "const activeAdminPath"
+      rescue StandardError
+        inject_into_file TW_CONF,
+                         "process.env.BUNDLE_GEMFILE ||= require('path').resolve(__dirname, 'Gemfile');\n\n",
+                         after: "import activeAdminPlugin from '@activeadmin/activeadmin/plugin';\n\n"
+      end
+
       def done
         say "Claude theme installed.", :green
-        say "1. Add Google Fonts to active_admin.css (see README)", :green
-        say "2. Ensure tailwind-active_admin.config.js sets BUNDLE_GEMFILE (see dummy example)", :green
-        say "3. Rebuild CSS: npm run build:css", :green
+        say "Rebuild CSS: npm run build:css", :green
+        say "Restart your Rails server after rebuilding.", :green
       end
     end
   end
