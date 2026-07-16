@@ -76,3 +76,14 @@ Use [Conventional Commits](https://www.conventionalcommits.org/):
 3. Rebuild dummy CSS if AA4 styles changed
 4. Run both AA3 and AA4 test suites when touching shared code
 5. Open PR with screenshots for visual changes
+
+## Releasing
+
+Maintainers only. Current published version: see [CHANGELOG.md](./CHANGELOG.md).
+
+1. Bump `lib/activeadmin_claude_theme/version.rb` (semver)
+2. Update `CHANGELOG.md`
+3. Commit, tag (`vX.Y.Z`), push tag
+4. `gem build activeadmin-claude-theme.gemspec`
+5. `gem push activeadmin-claude-theme-X.Y.Z.gem` (RubyGems MFA required)
+6. Publish GitHub Release from the tag with notes from the changelog

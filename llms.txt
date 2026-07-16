@@ -3,11 +3,13 @@
 > Open-source Rails gem: warm Claude-inspired admin theme for Active Admin 3 (Sass) and Active Admin 4 (Tailwind v4). Community project — not affiliated with Anthropic.
 
 Canonical repository: https://github.com/paladini/activeadmin-claude-theme
-RubyGems: https://rubygems.org/gems/activeadmin-claude-theme
+RubyGems: https://rubygems.org/gems/activeadmin-claude-theme/versions/0.2.0
+Changelog: https://github.com/paladini/activeadmin-claude-theme/blob/main/CHANGELOG.md
 
 ## Quick facts
 
 - Package: `activeadmin-claude-theme`
+- Current release: `0.2.0` (RubyGems)
 - Install: add gem → `rails generate activeadmin_claude_theme:install`
 - Active Admin: 3.2+ (SCSS/Sprockets) and 4.0.0.beta22+ (Tailwind v4)
 - Rails: 7.2+

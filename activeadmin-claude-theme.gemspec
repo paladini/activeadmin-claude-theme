@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.metadata["source_code_uri"] = spec.homepage
   spec.metadata["documentation_uri"] = "#{spec.homepage}/blob/main/README.md"
   spec.metadata["bug_reports_uri"] = "#{spec.homepage}/issues"
-  spec.metadata["changelog_uri"] = "#{spec.homepage}/releases"
+  spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/main/CHANGELOG.md"
   spec.metadata["rubygems_mfa_required"] = "true"
 
   spec.files = Dir.chdir(__dir__) do
@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
       "README.md",
       "CONTRIBUTING.md",
       "CODE_OF_CONDUCT.md",
+      "CHANGELOG.md",
       "llms.txt",
       "docs/*.md"
     ]

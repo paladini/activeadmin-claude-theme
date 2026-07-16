@@ -10,9 +10,11 @@
 
 Supports **Active Admin 3.2+** (SCSS / Sprockets) and **Active Admin 4.0.0.beta22+** (Tailwind CSS v4).
 
-**Quick install:** add the gem → `rails generate activeadmin_claude_theme:install` → rebuild CSS (AA4 only).
+**Quick install:** add `gem "activeadmin-claude-theme", "~> 0.2"` → `rails generate activeadmin_claude_theme:install` → rebuild CSS (AA4 only).
 
+- **Latest release:** [0.2.0 on RubyGems](https://rubygems.org/gems/activeadmin-claude-theme/versions/0.2.0) — AA3 + AA4
 - RubyGems: https://rubygems.org/gems/activeadmin-claude-theme
+- Changelog: [CHANGELOG.md](./CHANGELOG.md)
 - FAQ: [docs/FAQ.md](./docs/FAQ.md)
 - AI / LLM summary: [llms.txt](./llms.txt)
 
@@ -45,6 +47,7 @@ Use this block for search indexing, LLM context, and GEO (generative engine opti
 | **AA4 mechanism** | Tailwind v4 `@theme` remaps, `--claude-*` CSS variables, minimal ERB overrides |
 | **AA3 mechanism** | Sass variables + selector overrides via `activeadmin_claude_theme/aa3/base` |
 | **Install command** | `rails generate activeadmin_claude_theme:install` |
+| **Current release** | `0.2.0` ([RubyGems](https://rubygems.org/gems/activeadmin-claude-theme/versions/0.2.0)) |
 | **Design source** | [DESIGN.md](./DESIGN.md) |
 | **FAQ** | [docs/FAQ.md](./docs/FAQ.md) |
 
