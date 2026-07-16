@@ -7,11 +7,7 @@ Gem::Specification.new do |spec|
   spec.email       = [ "fpaladini@gmail.com" ]
   spec.homepage    = "https://github.com/paladini/activeadmin-claude-theme"
   spec.summary     = "Claude-inspired Active Admin theme for Rails — AA3 (Sass) and AA4 (Tailwind v4)."
-  spec.description = <<~DESC.squish
-    Open-source Rails admin theme for Active Admin 3 and 4. Warm cream canvas, coral accents,
-    editorial typography, and optional dark mode on AA4. Install with
-    `rails generate activeadmin_claude_theme:install`. Community theme — not affiliated with Anthropic.
-  DESC
+  spec.description = "Open-source Rails admin theme for Active Admin 3 and 4. Warm cream canvas, coral accents, editorial typography, and optional dark mode on AA4. Install with `rails generate activeadmin_claude_theme:install`. Community theme — not affiliated with Anthropic."
   spec.license     = "MIT"
   spec.required_ruby_version = ">= 3.2.0"
 
