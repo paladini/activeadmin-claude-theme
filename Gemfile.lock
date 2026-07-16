@@ -194,6 +194,8 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.5)
+    nokogiri (1.19.4-aarch64-linux-gnu)
+      racc (~> 1.4)
     nokogiri (1.19.4-x64-mingw-ucrt)
       racc (~> 1.4)
     orm_adapter (0.5.0)
@@ -310,10 +312,12 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
+    sqlite3 (2.9.5-aarch64-linux-gnu)
     sqlite3 (2.9.5-x64-mingw-ucrt)
     tailwindcss-rails (4.6.0)
       railties (>= 7.0.0)
       tailwindcss-ruby (~> 4.0)
+    tailwindcss-ruby (4.3.2-aarch64-linux-gnu)
     tailwindcss-ruby (4.3.2-x64-mingw-ucrt)
     thor (1.5.0)
     timeout (0.6.1)
@@ -339,6 +343,7 @@ GEM
     zeitwerk (2.8.2)
 
 PLATFORMS
+  aarch64-linux
   x64-mingw-ucrt
 
 DEPENDENCIES
@@ -423,6 +428,7 @@ CHECKSUMS
   net-protocol (0.2.2) sha256=aa73e0cba6a125369de9837b8d8ef82a61849360eba0521900e2c3713aa162a8
   net-smtp (0.5.1) sha256=ed96a0af63c524fceb4b29b0d352195c30d82dd916a42f03c62a3a70e5b70736
   nio4r (2.7.5) sha256=6c90168e48fb5f8e768419c93abb94ba2b892a1d0602cb06eef16d8b7df1dca1
+  nokogiri (1.19.4-aarch64-linux-gnu) sha256=1269fb644a6de405057a53dd5c762b1209b43ca7424f839454d3dbc677c31a8f
   nokogiri (1.19.4-x64-mingw-ucrt) sha256=051da97b8eccfdb5444fed40246a35e10d7298b9efe759b4cd25455ea04c587e
   orm_adapter (0.5.0) sha256=aa5d0be5d540cbb46d3a93e88061f4ece6a25f6e97d6a47122beb84fe595e9b9
   parallel (2.1.0) sha256=b35258865c2e31134c5ecb708beaaf6772adf9d5efae28e93e99260877b09356
@@ -460,8 +466,10 @@ CHECKSUMS
   rubyzip (3.4.1) sha256=0a79e745b5c25872ebd148457df5665da8530ed8626c993b01457128f173ca02
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
   selenium-webdriver (4.46.0) sha256=cb6cfa6f79eac041749df0b14cdcb0e9fe5df3715a64c77bfaa56b345b99f957
+  sqlite3 (2.9.5-aarch64-linux-gnu) sha256=78075b6337d3d182c6d2b4691049ed45cd220826160c9ea18946bf6a1de200dc
   sqlite3 (2.9.5-x64-mingw-ucrt) sha256=b00d5697994ee8589b6096694a2130aa5567db64373baca55ea98c9bf958f46a
   tailwindcss-rails (4.6.0) sha256=d99512867173d55c5ef8890427682299d8539f550cec1408b3d8667a538bd365
+  tailwindcss-ruby (4.3.2-aarch64-linux-gnu) sha256=c045c3ad10b19f5798fbe020e8419abc0c84fbbd12766998bd8cb108c786dc5c
   tailwindcss-ruby (4.3.2-x64-mingw-ucrt) sha256=42c42e1d02d1a147ad05b743cb682b3d7a7a9e75ad9d80af38c3e25f7dd1ff12
   thor (1.5.0) sha256=e3a9e55fe857e44859ce104a84675ab6e8cd59c650a49106a05f55f136425e73
   timeout (0.6.1) sha256=78f57368a7e7bbadec56971f78a3f5ecbcfb59b7fcbb0a3ed6ddc08a5094accb

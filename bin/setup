@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+bundle install
+cd test/dummy
+npm install
+npm run build:css
+bundle exec rails db:prepare db:seed
+
+echo ""
+echo "Ready! Start the dummy admin:"
+echo "  cd test/dummy && bundle exec rails server"
+echo "  http://localhost:3000/admin  (admin@example.com / password)"
