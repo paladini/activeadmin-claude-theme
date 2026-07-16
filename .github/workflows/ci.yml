@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      BUNDLE_GEMFILE: ${{ github.workspace }}/Gemfile
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: test/dummy/package-lock.json
+
+      - name: Install npm dependencies
+        working-directory: test/dummy
+        run: npm ci
+
+      - name: Build Active Admin CSS
+        working-directory: test/dummy
+        run: npm run build:css
+
+      - name: Prepare test database
+        working-directory: test/dummy
+        run: bundle exec rails db:test:prepare
+
+      - name: Run tests
+        run: ruby -Itest test/activeadmin_claude_theme_test.rb test/integration/theme_integration_test.rb
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: RuboCop
+        run: bundle exec rubocop --parallel

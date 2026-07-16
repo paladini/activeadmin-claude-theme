@@ -1,0 +1,200 @@
+/* Active Admin Claude Theme — Tailwind v4 design tokens + components.
+   Inspired by Claude/Anthropic aesthetics (community theme, not affiliated). */
+
+/* Fonts load from the host entry file to keep @import order valid for Tailwind v4. */
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+
+  --radius-claude-sm: 6px;
+  --radius-claude-md: 8px;
+  --radius-claude-lg: 12px;
+  --radius-claude-xl: 16px;
+}
+
+/* Recolor AA4's neutral chrome (bg-white / gray-* / dark:gray-*) to warm Claude canvas. */
+@theme {
+  --color-white: #ffffff;
+  --color-gray-50: #faf9f5;
+  --color-gray-100: #f5f0e8;
+  --color-gray-200: #e6dfd8;
+  --color-gray-300: #d6c8b6;
+  --color-gray-400: #8e8b82;
+  --color-gray-500: #6c6a64;
+  --color-gray-600: #3d3d3a;
+  --color-gray-700: #2e2a26;
+  --color-gray-800: #252320;
+  --color-gray-900: #1f1e1b;
+  --color-gray-950: #181715;
+}
+
+/* Recolor AA4 accent scale (blue/indigo hardwired in plugin.js) to Claude coral. */
+@theme {
+  --color-blue-50: #fdf5f1;
+  --color-indigo-50: #fdf5f1;
+  --color-blue-100: #f8e8df;
+  --color-indigo-100: #f8e8df;
+  --color-blue-200: #efd3c4;
+  --color-indigo-200: #efd3c4;
+  --color-blue-300: #e0b39c;
+  --color-indigo-300: #e0b39c;
+  --color-blue-400: #d49378;
+  --color-indigo-400: #d49378;
+  --color-blue-500: #cc785c;
+  --color-indigo-500: #cc785c;
+  --color-blue-600: #a9583e;
+  --color-indigo-600: #a9583e;
+  --color-blue-700: #8f4a34;
+  --color-indigo-700: #8f4a34;
+  --color-blue-800: #733c2b;
+  --color-indigo-800: #733c2b;
+  --color-blue-900: #5c3124;
+  --color-indigo-900: #5c3124;
+  --color-blue-950: #3a1e16;
+  --color-indigo-950: #3a1e16;
+}
+
+:root {
+  --claude-primary: #cc785c;
+  --claude-primary-active: #a9583e;
+  --claude-primary-disabled: #e6dfd8;
+  --claude-ink: #141413;
+  --claude-body: #3d3d3a;
+  --claude-body-strong: #252523;
+  --claude-muted: #6c6a64;
+  --claude-muted-soft: #8e8b82;
+  --claude-hairline: #e6dfd8;
+  --claude-hairline-soft: #ebe6df;
+  --claude-canvas: #faf9f5;
+  --claude-surface-soft: #f5f0e8;
+  --claude-surface-card: #efe9de;
+  --claude-surface-cream: #e8e0d2;
+  --claude-on-primary: #ffffff;
+  --claude-success: #5db872;
+  --claude-warning: #d4a017;
+  --claude-error: #c64545;
+  --claude-accent-teal: #5db8a6;
+  --claude-accent-amber: #e8a55a;
+}
+
+.dark {
+  --claude-primary: #cc785c;
+  --claude-primary-active: #a9583e;
+  --claude-primary-disabled: #3d3530;
+  --claude-ink: #faf9f5;
+  --claude-body: #c9c4bc;
+  --claude-body-strong: #f5f0e8;
+  --claude-muted: #a09d96;
+  --claude-muted-soft: #8e8b82;
+  --claude-hairline: #2e2a26;
+  --claude-hairline-soft: #252320;
+  --claude-canvas: #181715;
+  --claude-surface-soft: #1f1e1b;
+  --claude-surface-card: #252320;
+  --claude-surface-cream: #2e2a26;
+  --claude-on-primary: #ffffff;
+  --claude-success: #5db872;
+  --claude-warning: #e8a55a;
+  --claude-error: #f07171;
+  --claude-accent-teal: #5db8a6;
+  --claude-accent-amber: #e8a55a;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--claude-canvas);
+    color: var(--claude-body);
+  }
+}
+
+@layer components {
+  .claude-brand-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--claude-ink);
+  }
+
+  .claude-brand-dot {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, var(--claude-primary), var(--claude-primary-active));
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--claude-primary) 18%, transparent);
+  }
+
+  .claude-nav-active-indicator {
+    position: relative;
+  }
+
+  .claude-nav-active-indicator.selected::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: -0.5rem;
+    top: 0.35rem;
+    bottom: 0.35rem;
+    width: 3px;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, var(--claude-primary), var(--claude-primary-active));
+  }
+
+  .claude-btn-primary {
+    background: var(--claude-primary);
+    color: var(--claude-on-primary);
+    border-radius: var(--radius-claude-md);
+    font-weight: 500;
+    transition: background-color 150ms ease;
+  }
+
+  .claude-btn-primary:hover {
+    background: var(--claude-primary-active);
+  }
+
+  .claude-tag {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    padding: 0.125rem 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .claude-tag-success {
+    background: color-mix(in srgb, var(--claude-success) 16%, transparent);
+    color: var(--claude-success);
+  }
+
+  .claude-tag-warning {
+    background: color-mix(in srgb, var(--claude-warning) 16%, transparent);
+    color: var(--claude-warning);
+  }
+
+  .claude-tag-error {
+    background: color-mix(in srgb, var(--claude-error) 16%, transparent);
+    color: var(--claude-error);
+  }
+
+  .claude-num {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .claude-panel {
+    background: var(--claude-surface-card);
+    border: 1px solid var(--claude-hairline-soft);
+    border-radius: var(--radius-claude-lg);
+  }
+
+  [data-test-site-title] {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--claude-ink);
+  }
+}

@@ -1,0 +1,3 @@
+source "https://rubygems.org"
+
+# Dummy app uses the parent gem Gemfile via config/boot.rb

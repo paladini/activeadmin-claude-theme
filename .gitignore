@@ -1,0 +1,15 @@
+/.bundle/
+/doc/
+/log/*.log
+/pkg/
+/tmp/
+/node_modules/
+/test/dummy/log/
+/test/dummy/tmp/
+/test/dummy/storage/
+/test/dummy/node_modules/
+/test/dummy/db/*.sqlite3
+/test/dummy/db/*.sqlite3-*
+/test/dummy/tmp/pids/
+*.gem
+.DS_Store

@@ -1,0 +1,12 @@
+{
+  "name": "activeadmin-claude-theme-dummy",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify"
+  },
+  "devDependencies": {
+    "@activeadmin/activeadmin": "4.0.0-beta22",
+    "@tailwindcss/cli": "^4.1.17"
+  }
+}
