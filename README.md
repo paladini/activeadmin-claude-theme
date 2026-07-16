@@ -1,25 +1,54 @@
-# Active Admin Claude Theme
+# Active Admin Claude Theme — Rails admin UI for AA3 & AA4
 
-[![Gem Version](https://badge.fury.io/rb/activeadmin-claude-theme.svg)](https://badge.fury.io/rb/activeadmin-claude-theme)
+[![Gem Version](https://badge.fury.io/rb/activeadmin-claude-theme.svg)](https://rubygems.org/gems/activeadmin-claude-theme)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/paladini/activeadmin-claude-theme/actions/workflows/ci.yml/badge.svg)](https://github.com/paladini/activeadmin-claude-theme/actions/workflows/ci.yml)
 
-A warm, editorial **Active Admin 3 and 4** theme inspired by Claude/Anthropic aesthetics — cream canvas, coral accents, and editorial admin chrome.
+**activeadmin-claude-theme** is an open-source Ruby gem that themes [Active Admin](https://activeadmin.info/) backends with a warm, editorial look inspired by Claude aesthetics — cream canvas, coral accents, and serif headlines.
 
 > **Community theme.** Not affiliated with or endorsed by Anthropic.
 
 Supports **Active Admin 3.2+** (SCSS / Sprockets) and **Active Admin 4.0.0.beta22+** (Tailwind CSS v4).
 
+**Quick install:** add the gem → `rails generate activeadmin_claude_theme:install` → rebuild CSS (AA4 only).
+
+- RubyGems: https://rubygems.org/gems/activeadmin-claude-theme
+- FAQ: [docs/FAQ.md](./docs/FAQ.md)
+- AI / LLM summary: [llms.txt](./llms.txt)
+
 ---
 
-## AI & Agent-Readable Summary
+## Table of contents
 
-- **What is it?** A Rails Engine gem that themes Active Admin with Claude-inspired palette and typography.
-- **AA4 stack:** Tailwind v4 `@theme` remaps, CSS variables, minimal ERB view overrides, dark mode preserved.
-- **AA3 stack:** Sass variables + selector overrides via `activeadmin_claude_theme/aa3/base`, Sprockets + `sassc-rails`.
-- **Design source:** [DESIGN.md](./DESIGN.md)
-- **Install:** Gemfile → `rails g activeadmin_claude_theme:install` (auto-detects AA3 vs AA4).
-- **Keywords:** `active admin theme`, `activeadmin 3`, `activeadmin 4`, `tailwind admin`, `claude theme`, `sass admin theme`.
+- [AI & agent-readable summary](#ai--agent-readable-summary)
+- [Version support](#version-support)
+- [Features](#features)
+- [Screenshots](#screenshots-active-admin-4)
+- [Installation — Active Admin 4](#installation--active-admin-4)
+- [Installation — Active Admin 3](#installation--active-admin-3)
+- [Troubleshooting](#troubleshooting)
+- [Customization](#customization)
+- [Development](#development)
+- [License](#license)
+
+---
+
+## AI & agent-readable summary
+
+Use this block for search indexing, LLM context, and GEO (generative engine optimization). Full structured index: [llms.txt](./llms.txt).
+
+| Field | Value |
+| --- | --- |
+| **Package name** | `activeadmin-claude-theme` |
+| **Type** | Rails Engine gem |
+| **Purpose** | Theme Active Admin 3/4 admin panels with Claude-inspired design tokens |
+| **AA4 mechanism** | Tailwind v4 `@theme` remaps, `--claude-*` CSS variables, minimal ERB overrides |
+| **AA3 mechanism** | Sass variables + selector overrides via `activeadmin_claude_theme/aa3/base` |
+| **Install command** | `rails generate activeadmin_claude_theme:install` |
+| **Design source** | [DESIGN.md](./DESIGN.md) |
+| **FAQ** | [docs/FAQ.md](./docs/FAQ.md) |
+
+**Search keywords:** active admin theme, activeadmin 4 theme, activeadmin 3 theme, rails admin theme, tailwind admin theme, claude admin theme, dark mode active admin, ruby gem admin ui.
 
 ---
 
@@ -40,6 +69,7 @@ Override maps: [AA4](./docs/aa4-override-map.md) · [AA3](./docs/aa3-override-ma
 - **AA4:** Tailwind v4 `@theme` remaps, semantic `--claude-*` variables, branded header, dark mode, Flowbite hooks
 - **AA3:** Sass theme with matching palette, header/sidebar/table/form/login styling
 - Install generator auto-detects Active Admin major version
+- Documented FAQ and override maps for integrators
 
 ---
 
@@ -47,11 +77,11 @@ Override maps: [AA4](./docs/aa4-override-map.md) · [AA3](./docs/aa3-override-ma
 
 | Login | Dashboard |
 | --- | --- |
-| ![Login](docs/images/login.png) | ![Dashboard](docs/images/dashboard.png) |
+| ![Active Admin 4 login page styled with the Claude theme warm cream and coral palette](docs/images/login.png) | ![Active Admin 4 dashboard with Claude theme navigation and editorial typography](docs/images/dashboard.png) |
 
 | Admin Users | Dark Mode |
 | --- | --- |
-| ![Admin Users](docs/images/admin_users.png) | ![Dark Mode](docs/images/dashboard_dark.png) |
+| ![Active Admin 4 admin users index table with Claude theme filters sidebar](docs/images/admin_users.png) | ![Active Admin 4 dashboard in dark mode using Claude theme charcoal surfaces](docs/images/dashboard_dark.png) |
 
 ---
 
@@ -123,11 +153,13 @@ rails generate activeadmin_claude_theme:install
 
 The generator replaces `@import "active_admin/base"` in `app/assets/stylesheets/active_admin.scss` with the Claude AA3 entry. Restart Rails.
 
-**Limits on AA3:** light theme only (no native dark mode), approximate visual parity with AA4, classic AA3 layout.
+**Limits on AA3:** light theme only (no native dark mode), approximate visual parity with AA4, classic AA3 layout. See [FAQ](./docs/FAQ.md#does-the-theme-support-dark-mode).
 
 ---
 
 ## Troubleshooting
+
+See also [docs/FAQ.md — Troubleshooting](./docs/FAQ.md#troubleshooting).
 
 ### AA4: `active_admin.css` not present in the asset pipeline
 
@@ -219,14 +251,17 @@ Login (both): `admin@example.com` / `password`
 # AA4
 cd test/dummy && ruby bin/rails db:test:prepare
 cd ../..
-ruby -Itest test/activeadmin_claude_theme_test.rb test/integration/theme_integration_test.rb
+ruby -Itest test/activeadmin_claude_theme_test.rb
+ruby -Itest test/integration/theme_integration_test.rb
 
 # AA3
 BUNDLE_GEMFILE=gemfiles/activeadmin_3.gemfile bundle install
 cd test/dummy_aa3 && bundle exec rails db:test:prepare
 cd ../..
 DUMMY_PATH=dummy_aa3 BUNDLE_GEMFILE=gemfiles/activeadmin_3.gemfile \
-  ruby -Itest test/activeadmin_claude_theme_test.rb test/integration/aa3_theme_integration_test.rb
+  ruby -Itest test/activeadmin_claude_theme_test.rb
+DUMMY_PATH=dummy_aa3 BUNDLE_GEMFILE=gemfiles/activeadmin_3.gemfile \
+  ruby -Itest test/integration/aa3_theme_integration_test.rb
 ```
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md).

@@ -6,13 +6,20 @@ Gem::Specification.new do |spec|
   spec.authors     = [ "Fernando Paladini" ]
   spec.email       = [ "fpaladini@gmail.com" ]
   spec.homepage    = "https://github.com/paladini/activeadmin-claude-theme"
-  spec.summary     = "A warm, editorial Claude-inspired theme for Active Admin 3 and 4."
-  spec.description = "Community theme gem for Active Admin 3 (SCSS) and Active Admin 4 (Tailwind v4) inspired by Claude/Anthropic aesthetics — warm canvas, coral accents, and editorial admin chrome."
+  spec.summary     = "Claude-inspired Active Admin theme for Rails — AA3 (Sass) and AA4 (Tailwind v4)."
+  spec.description = <<~DESC.squish
+    Open-source Rails admin theme for Active Admin 3 and 4. Warm cream canvas, coral accents,
+    editorial typography, and optional dark mode on AA4. Install with
+    `rails generate activeadmin_claude_theme:install`. Community theme — not affiliated with Anthropic.
+  DESC
   spec.license     = "MIT"
   spec.required_ruby_version = ">= 3.2.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
+  spec.metadata["documentation_uri"] = "#{spec.homepage}/blob/main/README.md"
+  spec.metadata["bug_reports_uri"] = "#{spec.homepage}/issues"
+  spec.metadata["changelog_uri"] = "#{spec.homepage}/releases"
   spec.metadata["rubygems_mfa_required"] = "true"
 
   spec.files = Dir.chdir(__dir__) do
@@ -23,7 +30,9 @@ Gem::Specification.new do |spec|
       "MIT-LICENSE",
       "README.md",
       "CONTRIBUTING.md",
-      "CODE_OF_CONDUCT.md"
+      "CODE_OF_CONDUCT.md",
+      "llms.txt",
+      "docs/*.md"
     ]
   end
 
