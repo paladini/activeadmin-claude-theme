@@ -6,10 +6,11 @@ on:
     branches: [main, master]
 
 jobs:
-  test:
+  test-aa4:
     runs-on: ubuntu-latest
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/Gemfile
+      DUMMY_PATH: dummy
 
     steps:
       - uses: actions/checkout@v4
@@ -37,8 +38,33 @@ jobs:
         working-directory: test/dummy
         run: bundle exec rails db:test:prepare
 
-      - name: Run tests
-        run: ruby -Itest test/activeadmin_claude_theme_test.rb test/integration/theme_integration_test.rb
+      - name: Run AA4 tests
+        run: |
+          ruby -Itest test/activeadmin_claude_theme_test.rb
+          ruby -Itest test/integration/theme_integration_test.rb
+
+  test-aa3:
+    runs-on: ubuntu-latest
+    env:
+      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/activeadmin_3.gemfile
+      DUMMY_PATH: dummy_aa3
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Prepare test database
+        working-directory: test/dummy_aa3
+        run: bundle exec rails db:test:prepare
+
+      - name: Run AA3 tests
+        run: |
+          ruby -Itest test/activeadmin_claude_theme_test.rb
+          ruby -Itest test/integration/aa3_theme_integration_test.rb
 
   lint:
     runs-on: ubuntu-latest

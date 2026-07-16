@@ -1,0 +1,7 @@
+// Active Admin 3.x Claude theme entry point.
+// Host apps: @import "activeadmin_claude_theme/aa3/base"; in active_admin.scss
+
+@import "activeadmin_claude_theme/aa3/variables";
+@import "active_admin/mixins";
+@import "active_admin/base";
+@import "activeadmin_claude_theme/aa3/overrides";

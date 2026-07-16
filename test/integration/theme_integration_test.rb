@@ -9,6 +9,8 @@ class ThemeIntegrationTest < ActionDispatch::IntegrationTest
   include Capybara::Minitest::Assertions
 
   def setup
+    skip "AA4-only integration tests" unless ActiveadminClaudeTheme::VersionSupport.active_admin_4?
+
     Capybara.app = Rails.application
     Capybara.current_driver = :rack_test
     AdminUser.find_or_create_by!(email: "admin@example.com") do |user|
