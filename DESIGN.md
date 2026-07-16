@@ -2,8 +2,8 @@
 version: alpha
 name: activeadmin-claude-theme
 description: >
-  Community Active Admin 4 theme inspired by Claude/Anthropic aesthetics.
-  Warm cream canvas, coral accents, editorial serif headlines, and dark charcoal surfaces.
+  Community Active Admin 3 and 4 theme inspired by Claude/Anthropic aesthetics.
+  Warm cream canvas, coral accents, editorial serif headlines. AA4 includes dark mode.
   Not affiliated with Anthropic.
 
 colors:

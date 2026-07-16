@@ -6,8 +6,8 @@ Gem::Specification.new do |spec|
   spec.authors     = [ "Fernando Paladini" ]
   spec.email       = [ "fpaladini@gmail.com" ]
   spec.homepage    = "https://github.com/paladini/activeadmin-claude-theme"
-  spec.summary     = "A warm, editorial Claude-inspired theme for Active Admin 4."
-  spec.description = "Community theme gem for Active Admin 4 (Tailwind v4) inspired by Claude/Anthropic aesthetics — warm canvas, coral accents, dark mode, and mobile-ready admin chrome."
+  spec.summary     = "A warm, editorial Claude-inspired theme for Active Admin 3 and 4."
+  spec.description = "Community theme gem for Active Admin 3 (SCSS) and Active Admin 4 (Tailwind v4) inspired by Claude/Anthropic aesthetics — warm canvas, coral accents, and editorial admin chrome."
   spec.license     = "MIT"
   spec.required_ruby_version = ">= 3.2.0"
 
@@ -30,5 +30,5 @@ Gem::Specification.new do |spec|
   spec.require_paths = [ "lib" ]
 
   spec.add_dependency "rails", ">= 7.2"
-  spec.add_dependency "activeadmin", ">= 4.0.0.beta22", "< 5"
+  spec.add_dependency "activeadmin", ">= 3.2.0", "< 5"
 end

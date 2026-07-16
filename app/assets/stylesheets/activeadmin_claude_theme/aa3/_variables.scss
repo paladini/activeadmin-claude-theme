@@ -1,0 +1,52 @@
+// Claude theme Sass variables for Active Admin 3.x
+// Palette source: DESIGN.md
+
+$claude-primary: #cc785c !default;
+$claude-primary-active: #a9583e !default;
+$claude-ink: #141413 !default;
+$claude-body: #3d3d3a !default;
+$claude-muted: #6c6a64 !default;
+$claude-hairline: #e6dfd8 !default;
+$claude-hairline-soft: #ebe6df !default;
+$claude-canvas: #faf9f5 !default;
+$claude-surface-soft: #f5f0e8 !default;
+$claude-surface-card: #efe9de !default;
+$claude-on-primary: #ffffff !default;
+$claude-success: #5db872 !default;
+$claude-warning: #d4a017 !default;
+$claude-error: #c64545 !default;
+
+// Active Admin core variables (must be set before @import "active_admin/base")
+$primary-color: $claude-primary !default;
+$secondary-color: $claude-surface-soft !default;
+$text-color: $claude-body !default;
+$link-color: $claude-primary !default;
+$non-text-link-color: $claude-primary !default;
+$sidebar-link-color: $claude-primary !default;
+$section-header-text-color: $claude-ink !default;
+$page-header-text-color: $claude-ink !default;
+$header-color: $claude-ink !default;
+$body-background-color: $claude-canvas !default;
+$successful-color: $claude-success !default;
+$warning-color: $claude-warning !default;
+$error-color: $claude-error !default;
+$breadcrumb-color: $claude-muted !default;
+$current-menu-item-background: rgba($claude-primary, 0.12) !default;
+$hover-menu-item-background: rgba($claude-primary, 0.08) !default;
+$table-stripe-color: $claude-surface-soft !default;
+$table-selected-color: rgba($claude-primary, 0.1) !default;
+$sidebar-width: 260px !default;
+$border-width: 1px !default;
+$border-color: $claude-hairline !default;
+$cell-padding: 10px 12px !default;
+$cell-horizontal-padding: 12px !default;
+$panel-border-radius: 8px !default;
+
+$font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif !default;
+$font-size: 14px !default;
+$font-weight-normal: 400 !default;
+$font-weight-bold: 600 !default;
+$line-height: 1.5 !default;
+
+$claude-font-serif: "Source Serif 4", Georgia, "Times New Roman", serif !default;
+$claude-font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace !default;

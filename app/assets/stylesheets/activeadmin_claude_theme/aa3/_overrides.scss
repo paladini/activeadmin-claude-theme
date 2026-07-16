@@ -1,0 +1,336 @@
+// Claude theme overrides for Active Admin 3.x chrome and components
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap");
+
+body.active_admin {
+  font-family: $font-family;
+  background: $claude-canvas;
+  color: $claude-body;
+}
+
+body.active_admin #header {
+  background: $claude-canvas;
+  border-bottom: 1px solid $claude-hairline;
+  box-shadow: none;
+  padding: 0 24px;
+
+  h1 {
+    font-family: $claude-font-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: $claude-ink;
+    padding: 16px 0;
+  }
+
+  ul.tabs > li {
+    a {
+      color: $claude-body;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-weight: 500;
+
+      &:hover {
+        background: $hover-menu-item-background;
+        color: $claude-primary;
+      }
+    }
+
+    &.current a,
+    &.has_nested.current > a:first-child {
+      background: $current-menu-item-background;
+      color: $claude-primary-active;
+      font-weight: 600;
+    }
+  }
+
+  #utility_nav {
+    a {
+      color: $claude-muted;
+
+      &:hover {
+        color: $claude-primary;
+      }
+    }
+  }
+}
+
+body.active_admin #title_bar {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 24px 24px 8px;
+
+  #titlebar_left h2 {
+    font-family: $claude-font-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: $claude-ink;
+    font-size: 1.5rem;
+  }
+
+  .action_items span.action_item > a,
+  .action_items span.action_item > .dropdown_menu > a {
+    background: $claude-primary;
+    border: none;
+    border-radius: 8px;
+    color: $claude-on-primary;
+    font-weight: 500;
+    padding: 8px 14px;
+    text-shadow: none;
+    box-shadow: none;
+
+    &:hover {
+      background: $claude-primary-active;
+    }
+  }
+}
+
+body.active_admin #active_admin_content {
+  padding: 0 24px 24px;
+}
+
+body.active_admin #sidebar {
+  .sidebar_section {
+    background: $claude-surface-card;
+    border: 1px solid $claude-hairline-soft;
+    border-radius: $panel-border-radius;
+    box-shadow: none;
+
+    > h3 {
+      background: transparent;
+      border-bottom: 1px solid $claude-hairline;
+      color: $claude-ink;
+      font-family: $claude-font-serif;
+      font-weight: 600;
+      text-shadow: none;
+    }
+  }
+}
+
+body.active_admin .panel {
+  background: $claude-surface-card;
+  border: 1px solid $claude-hairline-soft;
+  border-radius: $panel-border-radius;
+  box-shadow: none;
+
+  > h3 {
+    background: transparent;
+    border-bottom: 1px solid $claude-hairline;
+    color: $claude-ink;
+    font-family: $claude-font-serif;
+    font-weight: 600;
+    text-shadow: none;
+  }
+}
+
+body.active_admin table.index_table {
+  border: 1px solid $claude-hairline-soft;
+  border-radius: $panel-border-radius;
+  overflow: hidden;
+
+  th {
+    background: $claude-surface-soft;
+    border-bottom: 1px solid $claude-hairline;
+    color: $claude-ink;
+    font-weight: 600;
+    text-shadow: none;
+  }
+
+  td {
+    border-bottom: 1px solid $claude-hairline-soft;
+  }
+
+  tr.even td {
+    background: $table-stripe-color;
+  }
+
+  tr.selected td {
+    background: $table-selected-color;
+  }
+
+  a,
+  a.table_tools_button,
+  .dropdown_menu_button {
+    color: $claude-primary;
+
+    &:hover {
+      color: $claude-primary-active;
+    }
+  }
+}
+
+body.active_admin .status_tag {
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 2px 8px;
+  text-transform: none;
+}
+
+body.active_admin .pagination {
+  a,
+  span.page.current,
+  em.current {
+    border-radius: 6px;
+  }
+
+  span.page.current,
+  em.current {
+    background: $claude-primary;
+    border-color: $claude-primary;
+    color: $claude-on-primary;
+    font-weight: 600;
+  }
+}
+
+body.active_admin form fieldset.inputs,
+body.active_admin form fieldset.actions {
+  background: $claude-surface-card;
+  border: 1px solid $claude-hairline-soft;
+  border-radius: $panel-border-radius;
+  box-shadow: none;
+
+  > legend span {
+    background: transparent;
+    border: none;
+    color: $claude-ink;
+    font-family: $claude-font-serif;
+    font-weight: 600;
+    text-shadow: none;
+  }
+}
+
+body.active_admin form input[type="text"],
+body.active_admin form input[type="password"],
+body.active_admin form input[type="email"],
+body.active_admin form input[type="number"],
+body.active_admin form input[type="url"],
+body.active_admin form input[type="tel"],
+body.active_admin form input[type="date"],
+body.active_admin form input[type="datetime-local"],
+body.active_admin form textarea,
+body.active_admin form select {
+  background: #ffffff;
+  border: 1px solid $claude-hairline;
+  border-radius: 8px;
+  box-shadow: none;
+  color: $claude-body;
+
+  &:focus {
+    border-color: $claude-primary;
+    outline: 2px solid rgba($claude-primary, 0.2);
+    outline-offset: 0;
+  }
+}
+
+body.active_admin form input[type="submit"],
+body.active_admin form button,
+body.active_admin form a.button,
+body.active_admin .buttons input[type="submit"],
+body.active_admin .buttons button {
+  background: $claude-primary;
+  border: none;
+  border-radius: 8px;
+  box-shadow: none;
+  color: $claude-on-primary;
+  font-weight: 500;
+  text-shadow: none;
+
+  &:hover {
+    background: $claude-primary-active;
+  }
+}
+
+body.active_admin .flash {
+  border-radius: 8px;
+  border-width: 1px;
+  box-shadow: none;
+  font-weight: 500;
+}
+
+body.active_admin .flash.flash_notice {
+  background: rgba($claude-success, 0.12);
+  border-color: rgba($claude-success, 0.35);
+  color: darken($claude-success, 18%);
+}
+
+body.active_admin .flash.flash_alert,
+body.active_admin .flash.flash_error {
+  background: rgba($claude-error, 0.12);
+  border-color: rgba($claude-error, 0.35);
+  color: darken($claude-error, 8%);
+}
+
+body.active_admin.logged_out {
+  background: $claude-canvas;
+
+  #content_wrapper #active_admin_content {
+    background: $claude-surface-card;
+    border: 1px solid $claude-hairline-soft;
+    border-radius: 12px;
+    box-shadow: none;
+    padding: 32px;
+  }
+
+  #login h2 {
+    color: $claude-ink;
+    font-family: $claude-font-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  form input[type="submit"] {
+    background: $claude-primary;
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+
+    &:hover {
+      background: $claude-primary-active;
+    }
+  }
+}
+
+body.active_admin .breadcrumb {
+  color: $claude-muted;
+  margin-bottom: 8px;
+
+  a {
+    color: $claude-primary;
+
+    &:hover {
+      color: $claude-primary-active;
+    }
+  }
+}
+
+body.active_admin .table_tools .dropdown_menu_button,
+body.active_admin .table_tools a.table_tools_button {
+  background: #ffffff;
+  border: 1px solid $claude-hairline;
+  border-radius: 8px;
+  box-shadow: none;
+  color: $claude-body;
+
+  &:hover {
+    background: $claude-surface-soft;
+    color: $claude-primary;
+  }
+}
+
+body.active_admin .attributes_table {
+  th {
+    color: $claude-muted;
+    font-weight: 500;
+  }
+
+  td {
+    color: $claude-body;
+  }
+}
+
+body.active_admin code,
+body.active_admin pre {
+  font-family: $claude-font-mono;
+}

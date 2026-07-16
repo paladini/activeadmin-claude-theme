@@ -9,6 +9,8 @@ module ActiveadminClaudeTheme
     end
 
     initializer "activeadmin_claude_theme.prepend_views" do
+      next unless ActiveadminClaudeTheme::VersionSupport.active_admin_4?
+
       ActiveSupport.on_load(:action_controller_base) do
         prepend_view_path ActiveadminClaudeTheme::Engine.root.join("app/views")
       end
