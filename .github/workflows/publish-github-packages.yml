@@ -1,0 +1,57 @@
+# Publish the gem to GitHub Packages only.
+# Does NOT push to rubygems.org (existing RubyGems release is unchanged).
+name: Publish GitHub Packages
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Build the gem but skip gem push"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    name: Build + Publish (GitHub Packages)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+
+      - name: Build gem
+        id: build
+        run: |
+          gem build activeadmin-claude-theme.gemspec
+          GEM_FILE=$(ls -1 activeadmin-claude-theme-*.gem | head -n 1)
+          echo "gem_file=${GEM_FILE}" >> "$GITHUB_OUTPUT"
+          echo "Built ${GEM_FILE}"
+
+      - name: Configure GitHub Packages credentials
+        if: ${{ !inputs.dry_run }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p "$HOME/.gem"
+          printf -- "---\n:github: Bearer %s\n" "${GITHUB_TOKEN}" > "$HOME/.gem/credentials"
+          chmod 0600 "$HOME/.gem/credentials"
+
+      - name: Publish to GitHub Packages
+        if: ${{ !inputs.dry_run }}
+        env:
+          OWNER: ${{ github.repository_owner }}
+        run: |
+          gem push --KEY github --host "https://rubygems.pkg.github.com/${OWNER}" "${{ steps.build.outputs.gem_file }}"
+
+      - name: Dry run summary
+        if: ${{ inputs.dry_run }}
+        run: |
+          echo "Dry run: skipped push of ${{ steps.build.outputs.gem_file }}"
+          echo "Target host would be https://rubygems.pkg.github.com/${{ github.repository_owner }}"
